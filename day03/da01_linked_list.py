@@ -34,7 +34,7 @@ class LinkedList:
     class Node:
         def __init__(self, data):
             self.data = data
-            self.prev = None
+            self.prev = None 
             self.next = None  
 
         def __str__(self):
