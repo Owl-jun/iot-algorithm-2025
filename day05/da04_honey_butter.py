@@ -4,6 +4,11 @@ class Graph:
         self.graph = [[0 for _ in range(size)] for _ in range(size)]
         if setting:
             self.setting_All_connecting()
+        self.tag = {0 : ['GS25', 30], 
+                    1 : ['CU', 60], 
+                    2 : ['Seven11', 10], 
+                    3 : ['MiniStop', 90], 
+                    4 : ['Emart24', 40]}
 
     def setting_All_connecting(self):
         for i in range(self.size):
@@ -26,31 +31,29 @@ class Graph:
         self.graph[row] = values
 
     def dfs(self, start):
+        max = 0
         visited = []
         stack = [start]
 
         while stack:
             node = stack.pop()
+            if self.tag[node][1] > max:
+                max = self.tag[node][1]
+                store = self.tag[node][0]
             if node not in visited:
                 visited.append(node)
                 # 현재 노드(node)의 인접 노드 탐색
                 for neighbor in range(self.size - 1, -1, -1):
                     if self.graph[node][neighbor] == 1 and neighbor not in visited:
                         stack.append(neighbor)
+        print(f'허니버터칩 많은 곳 {store} : {max}개')
         return visited
 
+graph = Graph(5)
+graph.set({0 : [0,1,1,0,0]})
+graph.set({1 : [1,0,1,1,0]})
+graph.set({2 : [1,1,0,1,0]})
+graph.set({3 : [0,1,1,0,1]})
+graph.set({4 : [0,0,0,1,0]})
 
-if __name__ == "__main__":
-
-    G1 = Graph(6)
-    G1.set({0 : [0,1,1,0,0,0]})
-    G1.set({1 : [1,0,0,1,0,0]})
-    G1.set({2 : [1,0,0,1,0,0]})
-    G1.set({3 : [0,1,1,0,1,1]})
-    G1.set({4 : [0,0,0,1,0,1]})
-    G1.set({5 : [0,0,0,1,1,0]})
-
-    print("DFS 방문 순서:", G1.dfs(0))
-    print("DFS 방문 순서:", G1.dfs(5))
-    print("DFS 방문 순서:", G1.dfs(2))
-
+print(graph.dfs(0))
