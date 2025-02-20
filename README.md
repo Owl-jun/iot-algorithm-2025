@@ -103,6 +103,9 @@ https://github.com/user-attachments/assets/c063281a-8d97-4291-b370-db0d5f9d81c4
 
 - 동적 계획법
 
-
+## 8일차
+- 자료구조 / 알고리즘
+    - 검색
+    - 코딩테스트
 
 
